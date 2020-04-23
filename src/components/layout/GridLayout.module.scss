@@ -13,6 +13,16 @@
   grid-row-gap: $gap / 2;
   grid-template-rows: repeat(2, 1fr);
 
+  &[data-size="2"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+  }
+
+  &[data-size="4"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
   @include break(tablet) {
     padding: $gap;
     grid-column-gap: $gap;

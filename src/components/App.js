@@ -1,48 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styles from './App.module.scss'
 
-import { IoIosArrowRoundBack } from 'react-icons/io'
-import { IoIosArrowRoundForward } from 'react-icons/io'
-
 import GridLayout from './layout/GridLayout'
+import Nav from './Nav'
 import SpeechButton from './SpeechButton'
 import SoundButton from './SoundButton'
 
-let screens = [
-  [
-    { name: 'food', caption: '🍔', sound: 'bite' },
-    { name: 'mom', caption: '👩', sound: 'mom' },
-    { name: 'yes', caption: '😊', sound: 'yes' },
-    { name: 'no', caption: '🙁', sound: 'no' },
-  ],
-  [
-    { name: 'fart', caption: '💩', sound: 'fart' },
-    { name: 'bell', caption: '🔔', sound: 'doorbell' },
-    { name: 'cat', caption: '🐯', sound: null, say: 'meow' },
-    { name: 'hug', caption: '🤗', sound: null, say: 'hug me' },
-  ],
-  [
-    { name: 'stop', caption: '🛑', sound: null, say: 'stop' },
-    { name: 'go', caption: '🏁', sound: null, say: 'go' },
-    { name: 'less', caption: '👎', sound: null, say: 'less' },
-    { name: 'more', caption: '👍', sound: null, say: 'more' },
-  ],
-  [
-    { name: 'tv', caption: '📺', sound: null, say: 'TV' },
-    { name: 'ball', caption: '⚽', sound: null, say: 'ball' },
-    { name: 'book', caption: '📖', sound: null, say: 'book' },
-    { name: 'music', caption: '🎹', sound: null, say: 'music' }, // 🎶
-  ],
-]
+import screens from '../data/items-2x1'
 
-function Nav({ position, backHandler, nextHandler }) {
-  return (
-    <nav className={styles.Nav}>
-      <button data-position={position} onClick={backHandler}><IoIosArrowRoundBack /></button>
-      <button data-position={position} onClick={nextHandler}><IoIosArrowRoundForward /></button>
-    </nav>
-  )
-}
+// use SIZE 2 for items-2x1, SIZE 4 for items-2x2
+const SIZE = 2
 
 function App() {
   const [ currentScreen, setCurrentScreen ] = useState(0)
@@ -75,9 +42,9 @@ function App() {
       {userInteracted
         ? (
           <div className={styles.ui}>
-            <Nav position="top" backHandler={handleBack} nextHandler={handleNext}/>
+            <Nav position="top" size={SIZE} backHandler={handleBack} nextHandler={handleNext} />
             <div className={styles.flexStretch}>
-              <GridLayout>
+              <GridLayout size={SIZE}>
                 {screens[currentScreen].map(item => (
                   <React.Fragment key={item.name}>
                     {(item.sound && !item.say) && (
@@ -94,7 +61,7 @@ function App() {
                 ))}
               </GridLayout>
             </div>
-            <Nav position="bottom" backHandler={handleBack} nextHandler={handleNext}/>
+            <Nav position="bottom" size={SIZE} backHandler={handleBack} nextHandler={handleNext}/>
           </div>
         )
         : (

@@ -10,6 +10,7 @@ if ('speechSynthesis' in window) {
   console.log('text-to-speech not supported')
 }
 
+// cross-browser get array of speech synthesis voices
 function getVoices() {
   return new Promise(resolve => {
     let vs = speechSynthesis.getVoices()
@@ -27,6 +28,7 @@ function getVoices() {
   })
 }
 
+// choose iOS voice samantha if available; otherwise default to first en-US voice
 async function chooseVoice() {
   if (!voices) {
     voices = (await getVoices()).filter(voice => voice.lang === 'en-US')

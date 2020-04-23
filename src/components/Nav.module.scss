@@ -1,0 +1,85 @@
+@import '../theme.scss';
+
+.Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &[data-size="2"] {
+    > button {
+      padding: 2rem;
+      font-size: 2rem;
+      line-height: 2.5rem;
+
+      @include break(tablet) {
+        font-size: 4rem;
+        line-height: 5rem;
+      }
+    }
+  }
+
+  &[data-size="4"] {
+    > button {
+      padding: 1rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+
+      @include break(tablet) {
+        font-size: 3rem;
+        line-height: 4rem;
+      }
+    }
+  }
+
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+    padding: 1rem;
+
+    color: #fff;
+    background-color: $nav-color;
+    font-size: 1.5rem;
+    line-height: 2rem;
+
+    border-radius: 8px;
+    border: 0;
+
+    @include break(tablet) {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
+
+    &:first-of-type {
+      margin-left: $gap / 2;
+      margin-right: $gap / 4;
+
+      @include break(tablet) {
+        margin-left: $gap;
+        margin-right: $gap / 2;
+      }
+    }
+
+    &:last-of-type {
+      margin-right: $gap / 2;
+      margin-left: $gap / 4;
+
+      @include break(tablet) {
+        margin-right: $gap;
+        margin-left: $gap / 2;
+      }
+    }
+
+    &[data-position="top"] {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &[data-position="bottom"] {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
