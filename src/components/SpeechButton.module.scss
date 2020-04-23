@@ -1,9 +1,0 @@
-@import '../theme.scss';
-
-.SpeechButton {
-  @extend %image-button;
-
-  &[data-active="true"] {
-    background-color: $item-hover-color;
-  }
-}

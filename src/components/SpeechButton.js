@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
-import styles from './SpeechButton.module.scss'
+import React, { useEffect, useRef, useCallback } from 'react'
+
+import BaseButton from './BaseButton'
 
 let speech = null
 let voices = null
@@ -44,9 +45,7 @@ async function chooseVoice() {
   })
 }
 
-function SpeechButton({ children, say, backgroundColor }) {
-  const [ active, setActive ] = useState(false)
-
+function SpeechButton({ say, backgroundColor, children }) {
   const voiceRef = useRef(null)
 
   useEffect(() => {
@@ -66,26 +65,13 @@ function SpeechButton({ children, say, backgroundColor }) {
     speech.speak(utterance)
   }, [])
 
-  /*
-  const handleTouchStart = () => {
-    setActive(true)
-    speak(say)
-  }
-  */
-
-  // @todo - change back to onTouchStart after Android tablet purchased; iOS won't speak
   return (
-    <button
-      className={styles.SpeechButton}
-      style={backgroundColor ? { backgroundColor } : null}
-      data-active={active}
-      onClick={() => speak(say)}
-      // onPointerDown={handleTouchStart}
-      onPointerUp={() => setActive(false)}
-      onPointerCancel={() => setActive(false)}
+    <BaseButton
+      backgroundColor={backgroundColor}
+      onTap={() => speak(say)}
     >
       {children}
-    </button>
+    </BaseButton>
   )
 }
 

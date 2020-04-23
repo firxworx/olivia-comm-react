@@ -10,33 +10,6 @@ $nav-color: #468C98; // #798086;
 
 $gap: 36px; // 36px
 
-/* ITEMS */
-%image-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100%;
-
-  cursor: pointer;
-  user-select: none;
-  pointer-events: auto;
-
-  border: 0;
-  border-radius: 8px;
-
-  font-size: 3.5rem;
-
-  background-color: $item-color;
-  transition: background-color 100ms ease;
-
-  @include break(tablet) {
-    font-size: 7.5rem;
-  }
-}
-
 /*
 https://coolors.co/3a4454-53687e-c0d6df-dbe9ee-312f2f
-
 */

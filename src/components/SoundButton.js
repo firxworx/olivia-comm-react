@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
-import styles from './SoundButton.module.scss'
+import React, { useEffect, useCallback, useRef } from 'react'
 
 import bite from '../assets/sounds/bite.mp3'
 import buzzer from '../assets/sounds/buzzer.mp3'
@@ -8,6 +7,8 @@ import fart from '../assets/sounds/fart.mp3'
 import mom from '../assets/sounds/mom.wav'
 import no from '../assets/sounds/no.wav'
 import yes from '../assets/sounds/yes.wav'
+
+import BaseButton from './BaseButton'
 
 const sfx = {
   bite,
@@ -19,9 +20,7 @@ const sfx = {
   yes,
 }
 
-function SoundButton({ children, sound, backgroundColor }) {
-  const [ active, setActive ] = useState(false)
-
+function SoundButton({ sound, backgroundColor, children }) {
   const sfxRef = useRef(null)
 
   useEffect(() => {
@@ -29,22 +28,17 @@ function SoundButton({ children, sound, backgroundColor }) {
     sfxRef.current.load()
   }, [ sound ])
 
-  const handleTouchStart = () => {
-    setActive(true)
+  const handleTap = useCallback(() => {
     sfxRef.current.play()
-  }
+  }, [])
 
   return (
-    <button
-      className={styles.SoundButton}
-      style={backgroundColor ? { backgroundColor } : null}
-      data-active={active}
-      onPointerDown={handleTouchStart}
-      onPointerUp={() => setActive(false)}
-      onPointerCancel={() => setActive(false)}
+    <BaseButton
+      backgroundColor={backgroundColor}
+      onTap={handleTap}
     >
       {children}
-    </button>
+    </BaseButton>
   )
 }
 
