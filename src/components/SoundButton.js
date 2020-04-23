@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import styles from './Button.module.scss'
+import styles from './SoundButton.module.scss'
 
 import bite from '../assets/sounds/bite.mp3'
 import buzzer from '../assets/sounds/buzzer.mp3'
@@ -19,7 +19,7 @@ const sfx = {
   yes,
 }
 
-function Button({ children, sound }) {
+function SoundButton({ children, sound }) {
   const sfxRef = useRef(null)
 
   useEffect(() => {
@@ -28,10 +28,10 @@ function Button({ children, sound }) {
   }, [ sound ])
 
   return (
-    <button onClick={() => sfxRef.current.play()} className={styles.Button}>
+    <button onTouchStart={() => sfxRef.current.play()} className={styles.SoundButton}>
       {children}
     </button>
   )
 }
 
-export default Button
+export default SoundButton

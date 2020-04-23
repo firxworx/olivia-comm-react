@@ -6,20 +6,75 @@
   justify-content: space-between;
 
   > button {
-    padding: 2rem;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+    padding: 1rem;
+
+    color: #fff;
+    background-color: $nav-color;
+    font-size: 3rem;
+    line-height: 4rem;
+
+    border-radius: 8px;
+    border: 0;
+
+    &:first-of-type {
+      margin-left: $gap;
+      margin-right: $gap / 2;
+    }
+
+    &:last-of-type {
+      margin-right: $gap;
+      margin-left: $gap / 2;
+    }
+
+    &[data-position="top"] {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &[data-position="bottom"] {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 }
 
 .App {
   display: flex;
-  flex-flow: column nowrap;
+
+  align-items: center;
+  justify-content: center;
 
   height: 100vh;
+  width: 100%;
 
-  background-color: $bg-color;
+  background: $bg-color;
 
-  > .flexStretch {
-    flex: 1;
+  > button {
+    border: 0;
+    background-color: $item-color;
+    border-radius: 8px;
+    padding: 4rem;
+    font-size: 2rem;
+    color: #fff;
   }
+
+  > .ui {
+    display: flex;
+    flex-flow: column nowrap;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: $bg-color;
+
+    > .flexStretch {
+      flex: 1;
+    }
+  }
+
 }
