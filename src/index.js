@@ -4,6 +4,14 @@ import './index.scss'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
+// set window innerHeight
+window.onresize = function() {
+    document.body.height = window.innerHeight
+}
+
+// set initial height
+window.onresize()
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

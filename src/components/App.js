@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './App.module.scss'
 
 import { IoIosArrowRoundBack } from 'react-icons/io'
@@ -48,6 +48,19 @@ function App() {
   const [ currentScreen, setCurrentScreen ] = useState(0)
   const [ userInteracted, setUserInteracted ] = useState(false)
 
+  const [ width, setWidth ] = useState(window.innerWidth)
+  const [ height, setHeight ] = useState(window.innerHeight)
+
+  const updateWindowDimensions = () => {
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateWindowDimensions);
+    return () => window.removeEventListener('resize', updateWindowDimensions);
+  })
+
   const handleBack = () => {
     setCurrentScreen((currentScreen - 1 + screens.length) % screens.length)
   }
@@ -56,8 +69,9 @@ function App() {
     setCurrentScreen((currentScreen + 1) % screens.length)
   }
 
+  // note that the initial user interaction enables sounds to play on more browsers
   return (
-    <div className={styles.App}>
+    <div className={styles.App} style={{ height: height, width: width }}>
       {userInteracted
         ? (
           <div className={styles.ui}>
@@ -84,7 +98,7 @@ function App() {
           </div>
         )
         : (
-          <button onClick={() => setUserInteracted(true)}>Get Started</button>
+          <button onTouchStart={() => setUserInteracted(true)}>Get Started</button>
         )
       }
     </div>

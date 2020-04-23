@@ -1,3 +1,7 @@
+# Olivia-Communicate
+
+See the `homepage` property in `package.json` that overrides the deploy URL from CRA's default path '/'.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

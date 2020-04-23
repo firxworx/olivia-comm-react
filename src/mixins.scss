@@ -1,0 +1,37 @@
+/* MIXINS - to be imported by theme.scss */
+
+// usage: @include break(tablet) { ... }
+$MQs: true;
+@mixin break($point) {
+  @if ($MQs) {
+    $break-smallphone: "(min-width: 320px)";
+    $break-midphone: "(min-width: 480px)";
+    $break-smartphone: "(min-width: 600px)";
+    $break-tablet: "(min-width: 801px)";
+    $break-large: "(min-width: 1025px)";
+    $break-desktop: "(min-width: 1281px)";
+    $break-wide: "(max-width: 1600px)";
+
+    @if $point == smallphone {
+      @media #{$break-smallphone} { @content; }
+    }
+    @else if $point == midphone {
+      @media #{$break-midphone} { @content; }
+    }
+    @else if $point == smartphone {
+      @media #{$break-smartphone} { @content; }
+    }
+    @else if $point == tablet {
+      @media #{$break-tablet} { @content; }
+    }
+    @else if $point == large {
+      @media #{$break-large} { @content; }
+    }
+    @else if $point == desktop {
+      @media #{$break-desktop} { @content; }
+    }
+    @else if $point == wide {
+      @media #{$break-wide}  { @content; }
+    }
+  }
+}

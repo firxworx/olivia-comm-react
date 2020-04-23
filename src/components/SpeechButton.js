@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import styles from './SpeechButton.module.scss'
 
 let speech = null
@@ -52,7 +52,7 @@ function SpeechButton({ children, say }) {
     vv()
   }, [])
 
-  function speak(phrase) {
+  const speak = useCallback((phrase) => {
     if (!speech) {
       return
     }
@@ -60,10 +60,11 @@ function SpeechButton({ children, say }) {
     const utterance = new SpeechSynthesisUtterance(phrase)
     utterance.voice = voiceRef.current
     speech.speak(utterance)
-  }
+  }, [])
 
+  // @todo - change back to onTouchStart after Android tablet purchased; iOS won't speak
   return (
-    <button onTouchStart={() => speak(say)} className={styles.SpeechButton}>
+    <button onClick={() => speak(say)} className={styles.SpeechButton}>
       {children}
     </button>
   )

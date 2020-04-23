@@ -15,20 +15,35 @@
 
     color: #fff;
     background-color: $nav-color;
-    font-size: 3rem;
-    line-height: 4rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
 
     border-radius: 8px;
     border: 0;
 
+    @include break(tablet) {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
+
     &:first-of-type {
-      margin-left: $gap;
-      margin-right: $gap / 2;
+      margin-left: $gap / 2;
+      margin-right: $gap / 4;
+
+      @include break(tablet) {
+        margin-left: $gap;
+        margin-right: $gap / 2;
+      }
     }
 
     &:last-of-type {
-      margin-right: $gap;
-      margin-left: $gap / 2;
+      margin-right: $gap / 2;
+      margin-left: $gap / 4;
+
+      @include break(tablet) {
+        margin-right: $gap;
+        margin-left: $gap / 2;
+      }
     }
 
     &[data-position="top"] {
@@ -49,8 +64,7 @@
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
-  width: 100%;
+  // width and height set via JS
 
   background: $bg-color;
 
