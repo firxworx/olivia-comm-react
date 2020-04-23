@@ -4,13 +4,10 @@ import './index.scss'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
-// set window innerHeight
-window.onresize = function() {
-    document.body.height = window.innerHeight
-}
-
-// set initial height
-window.onresize()
+// prevent long-taps from opening context menu in Chrome
+document.body.addEventListener('contextmenu', (event) => {
+  event.preventDefault()
+})
 
 ReactDOM.render(
   <React.StrictMode>

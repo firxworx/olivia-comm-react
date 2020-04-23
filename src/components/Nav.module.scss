@@ -47,6 +47,8 @@
     border-radius: 8px;
     border: 0;
 
+    transition: background-color 100ms ease;
+
     @include break(tablet) {
       font-size: 3rem;
       line-height: 4rem;
@@ -70,6 +72,10 @@
         margin-right: $gap;
         margin-left: $gap / 2;
       }
+    }
+
+    &[data-active="true"] {
+      background-color: $item-active-color;
     }
 
     &[data-position="top"] {

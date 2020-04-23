@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from './SoundButton.module.scss'
 
 import bite from '../assets/sounds/bite.mp3'
@@ -20,6 +20,8 @@ const sfx = {
 }
 
 function SoundButton({ children, sound }) {
+  const [ active, setActive ] = useState(false)
+
   const sfxRef = useRef(null)
 
   useEffect(() => {
@@ -27,8 +29,19 @@ function SoundButton({ children, sound }) {
     sfxRef.current.load()
   }, [ sound ])
 
+  const handleTouchStart = () => {
+    setActive(true)
+    sfxRef.current.play()
+  }
+
   return (
-    <button onTouchStart={() => sfxRef.current.play()} className={styles.SoundButton}>
+    <button
+      className={styles.SoundButton}
+      data-active={active}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={() => setActive(false)}
+      onTouchCancel={() => setActive(false)}
+    >
       {children}
     </button>
   )
