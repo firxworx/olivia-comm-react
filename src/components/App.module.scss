@@ -1,0 +1,25 @@
+@import '../theme.scss';
+
+.Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > button {
+    padding: 2rem;
+    background-color: white;
+  }
+}
+
+.App {
+  display: flex;
+  flex-flow: column nowrap;
+
+  height: 100vh;
+
+  background-color: $bg-color;
+
+  > .flexStretch {
+    flex: 1;
+  }
+}
