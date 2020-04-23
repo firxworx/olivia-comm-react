@@ -48,12 +48,12 @@ function App() {
                 {screens[currentScreen].map(item => (
                   <React.Fragment key={item.name}>
                     {(item.sound && !item.say) && (
-                      <SoundButton sound={item.sound}>
+                      <SoundButton sound={item.sound} backgroundColor={item.bg}>
                         <span role="img" aria-label={item.name}>{item.caption}</span>
                       </SoundButton>
                     )}
                     {(!item.sound && item.say) && (
-                      <SpeechButton say={item.say}>
+                      <SpeechButton say={item.say} backgroundColor={item.bg}>
                         <span role="img" aria-label={item.name}>{item.caption}</span>
                       </SpeechButton>
                     )}

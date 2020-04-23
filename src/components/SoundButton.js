@@ -19,7 +19,7 @@ const sfx = {
   yes,
 }
 
-function SoundButton({ children, sound }) {
+function SoundButton({ children, sound, backgroundColor }) {
   const [ active, setActive ] = useState(false)
 
   const sfxRef = useRef(null)
@@ -37,10 +37,11 @@ function SoundButton({ children, sound }) {
   return (
     <button
       className={styles.SoundButton}
+      style={backgroundColor ? { backgroundColor } : null}
       data-active={active}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={() => setActive(false)}
-      onTouchCancel={() => setActive(false)}
+      onPointerDown={handleTouchStart}
+      onPointerUp={() => setActive(false)}
+      onPointerCancel={() => setActive(false)}
     >
       {children}
     </button>

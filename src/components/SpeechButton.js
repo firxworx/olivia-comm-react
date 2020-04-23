@@ -44,7 +44,7 @@ async function chooseVoice() {
   })
 }
 
-function SpeechButton({ children, say }) {
+function SpeechButton({ children, say, backgroundColor }) {
   const [ active, setActive ] = useState(false)
 
   const voiceRef = useRef(null)
@@ -66,15 +66,23 @@ function SpeechButton({ children, say }) {
     speech.speak(utterance)
   }, [])
 
+  /*
+  const handleTouchStart = () => {
+    setActive(true)
+    speak(say)
+  }
+  */
+
   // @todo - change back to onTouchStart after Android tablet purchased; iOS won't speak
   return (
     <button
       className={styles.SpeechButton}
+      style={backgroundColor ? { backgroundColor } : null}
       data-active={active}
       onClick={() => speak(say)}
-      onTouchStart={() => setActive(true)}
-      onTouchEnd={() => setActive(false)}
-      onTouchCancel={() => setActive(false)}
+      // onPointerDown={handleTouchStart}
+      onPointerUp={() => setActive(false)}
+      onPointerCancel={() => setActive(false)}
     >
       {children}
     </button>

@@ -9,7 +9,7 @@ REMOTE_PORT=24816
 # add -vv to command to debug...
 SSH_COMMAND="ssh -p$REMOTE_PORT"
 
-LOCAL_PATH="/Users/kfirko/Documents/dev/playground/olivia-communicate/build"
+LOCAL_PATH="/Users/kfirko/Documents/dev/playground/olivia-comm-react/build"
 REMOTE_PATH="/home/bcprojects/public_html/olivia-react"
 
 # don't forget to run `yarn build` first; see package.json for `deploy` script
